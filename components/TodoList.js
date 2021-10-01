@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 function TodoList({todos}) {
     return (
         <ul className={styles.listContainer}>
-            {todos.map((todo) => (<TodoItem todo={todo}/>))}
+            {todos.map((todo) => (<TodoItem key={todo.id} todo={todo}/>))}
         </ul>
     )
 };
