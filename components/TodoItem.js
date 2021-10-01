@@ -1,17 +1,24 @@
 import styles from '../styles/Home.module.css'
+import {Button, Flex, ListItem, Heading} from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
-function TodoItem({ todo }){
+function TodoItem({todo}) {
 
-    return(
-        <div className={styles.item}>
-            <div className={styles.textTask}>
-                <h4 key={todo.id}>{todo.description}</h4>
-            </div>
-            <div className={styles.actionButtonContainer}>
-                <button>Edit</button>
-                <button>Delete</button>
-            </div>
-        </div>
+    return (
+        <ListItem mb={6}>
+            <Flex direction={"row"} justifyContent={"space-between"} width={"1000px"} padding={"5px"} alignItems={"center"} border={"solid 0.5px"} borderRadius={"2.5%"} borderStyle={"dotted"}>
+                <Heading as="h6" size="md" mb={6} key={todo.id} >{todo.description}</Heading>
+                <Flex justifyContent={"space-evenly"} width={"120px"}>
+                    <Button colorScheme={"teal"}>
+                        <EditIcon></EditIcon>
+                    </Button>
+                    <Button colorScheme={"red"}>
+                        <DeleteIcon></DeleteIcon>
+                    </Button>
+                </Flex>
+            </Flex>
+        </ListItem>
+
     )
 };
 

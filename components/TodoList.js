@@ -1,11 +1,12 @@
 import TodoItem from '../components/TodoItem'
 import styles from "../styles/Home.module.css";
+import {List} from "@chakra-ui/react";
 
 function TodoList({todos}) {
     return (
-        <ul className={styles.listContainer}>
+        <List mb={8}>
             {todos.map((todo) => (<TodoItem key={todo.id} todo={todo}/>))}
-        </ul>
+        </List>
     )
 };
 

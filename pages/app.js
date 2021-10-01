@@ -2,26 +2,44 @@ import {useState} from 'react';
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import styles from '../styles/Home.module.css';
-import { ChakraProvider } from '@chakra-ui/react';
+import {Box, Button, ChakraProvider, Flex, Heading, useColorMode, useColorModeValue} from '@chakra-ui/react';
+import {MoonIcon, SunIcon} from "@chakra-ui/icons";
 
 function App() {
-    const [todos, setTodos] = useState([])
 
-    function addTodo(todo){
-        setTodos([todo,...todos]);
+    const { toggleColorMode } = useColorMode();
+    const formBackground = useColorModeValue("gray.100", "gray.700");
+
+    const [todos, setTodos] = useState([{
+        id: "1",
+        author: "Dario",
+        description: "Do the homework"
+    },
+        {
+            id: "2",
+            author: "Dario",
+            description: "Learn React"
+        }
+    ])
+
+    function addTodo(todo) {
+        setTodos([todo, ...todos]);
     }
 
     return (
-        <ChakraProvider>
-            <div className={styles.container}>
-                <h1 className={styles.mainHeader}>Todo App!</h1>
-                <TodoForm submitTodo={addTodo}/>
-                <TodoList todos={todos}/>
-                <footer>
-                    <h3>Powered by Dardo</h3>
-                </footer>
-            </div>
-        </ChakraProvider>
+        <Flex direction={"column"} alignItems={"center"} height={"100vh"} justifyContent={"center"} bgColor={formBackground}>
+            <Heading as="h1" size="4xl" isTruncated mb={6} fontFamily={"Bradley Hand ITC"}>Todo App!</Heading>
+            <TodoForm submitTodo={addTodo}/>
+            <TodoList todos={todos} />
+            <Heading as="h6" size="sm" mb={6} fontFamily={"Lucida Handwriting"}>Powered by Dardo</Heading>
+            <Button onClick={toggleColorMode} colorScheme={"teal"} variant={"outline"} mb={6}>
+                {formBackground === "gray.100"?
+                    <MoonIcon></MoonIcon>
+                    :
+                    <SunIcon></SunIcon>
+                }
+            </Button>
+        </Flex>
 
     );
 }

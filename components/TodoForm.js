@@ -1,5 +1,7 @@
 import {useState} from 'react';
 import styles from '../styles/Home.module.css'
+import {Button, Flex, FormControl, Input} from "@chakra-ui/react";
+import { AddIcon } from '@chakra-ui/icons';
 
 function TodoForm({submitTodo}) {
     const [todo, setTodo] = useState({
@@ -7,12 +9,9 @@ function TodoForm({submitTodo}) {
         description: "",
     })
 
-    const [isSubmittable, setIsSubmittable] = useState(true);
-
     function handleOnChange(e) {
         setTodo({...todo, description: e.target.value})
     }
-
 
     function handleOnSubmit(e) {
         e.preventDefault();
@@ -27,22 +26,17 @@ function TodoForm({submitTodo}) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleOnSubmit}>
-                <input
-                    className={styles.inputText}
-                    type="text"
-                    placeholder="Add todo..."
-                    value={todo.description}
-                    onChange={handleOnChange}
-                />
-                <button className={styles.inputButton}>Add!</button>
-            </form>
-            {!isSubmittable ?
-                    <span className={styles.warningMessage}>Please add a Todo!</span>
-                :
-                null}
-        </div>
+        <Flex width={'1000px'} mb={6}>
+            <FormControl id={"todo"}>
+                <Flex direction={'row'}>
+                    <Input type={"text"} placeholder={"Add todo..."} value={todo.description} onChange={handleOnChange}/>
+                    <Button colorScheme={"green"} onSubmit={handleOnSubmit}>
+                        <AddIcon ></AddIcon>
+                    </Button>
+                </Flex>
+            </FormControl>
+
+        </Flex>
     );
 }
 
