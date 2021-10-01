@@ -1,5 +1,5 @@
-import {Button, ChakraProvider, Flex, Heading, Input, useColorMode, useColorModeValue } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import {Button, ChakraProvider, Flex, Heading, Input, Link, useColorMode, useColorModeValue} from '@chakra-ui/react';
+import {ExternalLinkIcon, MoonIcon, SunIcon} from '@chakra-ui/icons';
 
 const Home = () => {
     const { toggleColorMode } = useColorMode();
@@ -11,12 +11,17 @@ const Home = () => {
             <Input placeholder={"lazar@chakra-ui.com"} variant={"filled"} mb={3} type={"email"}/>
             <Input placeholder={"********"} variant={"filled"} mb={6} type={"password"}/>
             <Button colorScheme={"teal"} mb={6}>Log in</Button>
-            <Button onClick={toggleColorMode} colorScheme={"teal"} variant={"outline"}>
+            <Button onClick={toggleColorMode} colorScheme={"teal"} variant={"outline"} mb={6}>
                 {formBackground === "gray.100"?
                     <MoonIcon></MoonIcon>
                     :
                     <SunIcon></SunIcon>
                 }
+            </Button>
+            <Button colorScheme={"teal"}>
+                <Link href="/app" isExternal>
+                    Go To TODO App! <ExternalLinkIcon mx="2px" />
+                </Link>
             </Button>
         </Flex>
     </Flex>
